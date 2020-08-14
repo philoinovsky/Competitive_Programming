@@ -25,33 +25,29 @@ template<typename T> void print(const T& t) { //print(vector);
 //-------------function-starts---------------------
 class Solution {
 public:
-    int maxProfit(int k, vector<int>& prices) {
-        if(prices.empty()) return 0;
-        int N = prices.size();
-        vector<vector<vector<int>>> dp(N,vector<vector<int>>(2,vector<int>(k+1,0x8f000000)));
-        dp[0][0][0] = 0;
-        dp[0][1][0] = -prices[0];
+    int numberOfArithmeticSlices(vector<int>& A) {
+        int N = A.size();
+        vector<map<int,int>> M(N);
+        int cnt = 0;
         for(int i = 1; i < N; i++) {
-            dp[i][0][0] = 0;
-            dp[i][1][0] = min(dp[i-1][1][0],-prices[i]);
-            for(int kk = 1; kk <= k; kk++){
-                dp[i][0][kk] = max(dp[i-1][1][kk-1]+prices[i],dp[i-1][0][kk]);
-                dp[i][1][kk] = max(dp[i-1][0][kk]-prices[i],dp[i-1][1][kk]);
+            for(int j = 0; j < i; j++){
+                int diff = A[i] - A[j];
+                if(M[j].find(diff) != M[j].end()){
+                    cnt += M[j][diff];
+                    M[i][diff] = M[j][diff] + 1;
+                } else {
+                    M[i][diff]++;
+                }
             }
         }
-        int MAX = 0x80000000;
-        for(int kk = 0; kk <= k; kk++) {
-            MAX = max(MAX,dp[N-1][0][kk]);
-            
-        }
-        return MAX;
+        return cnt;
     }
 };
 //-------------function-ends-----------------------
 
 int main(){
     Solution sol;
-    vector<int> res = {1,2,4};
-    sol.maxProfit(2,res);
+    vector<int> input = {2, 4, 6, 8, 10};
+    cout << sol.numberOfArithmeticSlices(input) << endl;
     return 0;
 }
