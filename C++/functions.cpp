@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+const int N = 0x8012;
+
 inline bool startswith(const string &s1, const string &s2){ return s1.rfind(s2, 0) == 0; }
 
 //------------------------quick-pow-start--------------------------------
@@ -42,7 +44,7 @@ int exgcd(int a, int b, int &x, int &y){
 }
 
 //a*x=1(mod b)
-int mod_reverse(int a,int MOD){
+int mod_inverse(int a,int MOD){
     int d,x,y;
     d = exgcd(a,MOD,x,y);
     if(d == 1) return (x % MOD + MOD) % MOD;
@@ -50,7 +52,7 @@ int mod_reverse(int a,int MOD){
 }
 
 //Fermat's Little Theorem
-inline int mod_reverse(int a, int MOD) { return fastpow(a,MOD-2,MOD); }
+inline int mod_inverse(int a, int MOD) { return fastpow(a,MOD-2,MOD); }
 //--------------------mod-reverse-end--------------------------
 
 //-------------------------combination-starts------------------------
@@ -80,7 +82,7 @@ private:
 //-------------------------combination-ends----------------------------
 
 //-------------------------combination-backtracking-starts--------------
-void combination(vector<ll> &res, ll cur, int start, int cnt0, int cnt1, int cnt2, bool repeat){
+void combination(vector<long long> &res, long long cur, int start, int cnt0, int cnt1, int cnt2, bool repeat){
     if(start == 3*N){
         res.push_back(cur);
     } else {
@@ -90,6 +92,29 @@ void combination(vector<ll> &res, ll cur, int start, int cnt0, int cnt1, int cnt
     }
 }
 //-------------------------combination-backtracking-ends----------------
+
+//----------------discretization-starts--------------------------------
+void distritize(vector<int> & O, vector<int> & R){
+    vector<int> tmp = O;
+    sort(O.begin(),O.end());
+    int N = unique(O.begin(),O.end()) - O.begin();
+    for(int i = 0; i < tmp.size(); i++)
+        R[i] = lower_bound(O.begin(),O.end(),tmp[i]) - O.begin() + 1;
+    O.swap(tmp);
+}
+//----------------discretization-starts--------------------------------
+
+//----------------Chinese-Remainder-Theorem-starts------------------------
+inline long long CRT(long long mod[], long long remainder[], int len){
+    long long p = 1, x = 0;
+    for(int i = 0; i < len; i++) p *= mod[i];
+    for(int i = 0; i < len; i++){
+        long long r = p / mod[i];
+        x += (remainder[i] * r * mod_inverse(r, mod[i])) % p;
+    }
+    return x % p;
+}
+//----------------Chinese-Remainder-Theorem-starts------------------------
 
 
 int main(){
