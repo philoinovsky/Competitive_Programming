@@ -1,42 +1,35 @@
-#define MAXN 1000
+#include <iostream>
+using namespace std;
+const int MAXN = 1e6+10;
 
-int fa[MAXN];
-inline void init(int n){
-    for (int i = 1; i <= n; ++i)
-        fa[i] = i;
-}
-
-inline void merge(int i, int j){
-    fa[find(i)] = find(j);
-}
-
-int find(int x){
-    return x == fa[x] ? x : (fa[x] = find(fa[x]));
-}
-
-//initialization
-//rank can be used same time with compress path, lead to O(n)
-int fa[MAXN];
-int rank[MAXN];
-inline void init(int n){
-    for (int i = 1; i <= n; ++i){
-        fa[i] = i;
-        rank[i] = 1;
+//-------------------union-find-starts------------------------------
+//RANK can be used same time with compress path, lead to O(n)
+class UnionFindSet {
+public:
+    int fa[MAXN], RANK[MAXN];
+    inline void init(int n){ for (int i = 1; i <= n; ++i){ fa[i] = i; RANK[i] = 1; } }
+    inline void merge(int i, int j){
+        int x = find(i), y = find(j);    //find two roots first
+        (RANK[x] <= RANK[y]) ? (fa[x] = y) : (fa[y] = x);
+        if (RANK[x] == RANK[y] && x != y) RANK[y]++; //if same depth but root different, new root depth +1
     }
+    int find(int x){ return (x == fa[x]) ? x : find(fa[x]); }
+};
+//-------------------union-find-ends--------------------------------
+
+int main(){
+    int N, M, P, X, Y;
+    cin >> N >> M >> P;
+    UnionFindSet ufs;
+    ufs.init(N);
+    for(int i = 0; i < M; i++) {
+        cin >> X >> Y;
+        ufs.merge(X, Y);
+    }
+    for(int i = 0; i < P; i++) {
+        cin >> X >> Y;
+        string res = ufs.find(X) == ufs.find(Y) ? "Yes" : "No";
+        cout << res << endl;
+    }
+    return 0;
 }
-inline void merge(int i, int j){
-    int x = find(i), y = find(j);    //先找到两个根节点
-    if (rank[x] <= rank[y])
-        fa[x] = y;
-    else
-        fa[y] = x;
-    if (rank[x] == rank[y] && x != y)
-        rank[y]++;                   //如果深度相同且根节点不同，则新的根节点的深度+1
-}
-int find(int x){
-    return x == fa[x] ? x : find(fa[x]);
-}
-
-
-
-
