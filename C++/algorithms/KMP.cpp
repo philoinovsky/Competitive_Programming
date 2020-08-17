@@ -10,6 +10,7 @@ string S, P;
 
 //-----------------------KMP-starts-----------------------
 int pmt[MAXN];
+bool pmtflag = false;
 void generate_pmt(string &p, int pmt[]){
     pmt[0] = 0;
     int j = 0, M = p.length();
@@ -21,12 +22,8 @@ void generate_pmt(string &p, int pmt[]){
         pmt[i] = j;
     }
 }
-//-----------------------KMP-ends-----------------------
-
-//in total takes O(N + M) to find all matches of pattern P in string S
-int main(){
-    cin >> S >> P;
-    generate_pmt(P, pmt);
+vector<int> KMP(string &S, string &P){
+    if(!pmtflag) generate_pmt(P, pmt);
     int j = 0, N = S.length();
     for (int i = 0; i < N; ++i) {
         while (S[i] != P[j] && j > 0)
@@ -37,6 +34,16 @@ int main(){
             cout << i - j + 2 << endl;
             j = pmt[j - 1];
         }
+    }
+}
+//-----------------------KMP-ends-----------------------
+
+//in total takes O(N + M) to find all matches of pattern P in string S
+int main(){
+    cin >> S >> P;
+    vector<int> res = KMP(S,P);
+    for(auto e: res){
+        cout << "pattern matches at position " << e << endl;
     }
     return 0;
 }
