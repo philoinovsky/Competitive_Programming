@@ -108,7 +108,7 @@ public:
         tree.resize(pow(2,cnt));
         mark.resize(pow(2,cnt));
     }
-    // single point update: 0 <= p <= n
+    // single point update: 1 <= p <= n
     void updateone(int p, int d){ update(p,p,d,0,1,n); }
     // update a range: 1 <= l,r <= n, delta be within int range
     void update(int l, int r, int d){ update(l,r,d,0,1,n); }
