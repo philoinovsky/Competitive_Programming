@@ -1,6 +1,7 @@
-bool startswith(const string &s1, const string &s2){
-    return s1.rfind(s2, 0) == 0;
-}
+#include <bits/stdc++.h>
+using namespace std;
+
+inline bool startswith(const string &s1, const string &s2){ return s1.rfind(s2, 0) == 0; }
 
 //------------------------quick-pow-start--------------------------------
 //with mod a^b
@@ -49,18 +50,8 @@ int mod_reverse(int a,int MOD){
 }
 
 //Fermat's Little Theorem
-inline int mod_reverse(int a, int MOD) {return fastpow(a,MOD-2,MOD);}
+inline int mod_reverse(int a, int MOD) { return fastpow(a,MOD-2,MOD); }
 //--------------------mod-reverse-end--------------------------
-template<typename T>
-void printVector(const T& t) {
-    std::copy(t.cbegin(), t.cend(), std::ostream_iterator<typename T::value_type>(std::cout, ", "));
-}
-
-template <typename T, size_t size> void print(const T (&array)[size]){
-    for(size_t i = 0; i < size; ++i)
-        std::cout << array[i] << " ";
-}
-//----------------------------------------------------------------
 
 //-------------------------combination-starts------------------------
 struct combinations{
@@ -99,3 +90,8 @@ void combination(vector<ll> &res, ll cur, int start, int cnt0, int cnt1, int cnt
     }
 }
 //-------------------------combination-backtracking-ends----------------
+
+
+int main(){
+    return 0;
+}
