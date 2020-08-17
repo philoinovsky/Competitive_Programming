@@ -11,13 +11,13 @@ string S, P;
 //-----------------------KMP-starts-----------------------
 int pmt[MAXN];
 bool pmtflag = false;
-void generate_pmt(string &p, int pmt[]){
+void generate_pmt(string &P, int pmt[]){
     pmt[0] = 0;
-    int j = 0, M = p.length();
+    int j = 0, M = P.length();
     for (int i = 1; i < M; i++) {
-        while (p[i] != p[j] && j > 0)
+        while (P[i] != P[j] && j > 0)
             j = pmt[j - 1];
-        if (p[i] == p[j])
+        if (P[i] == P[j])
             j++;
         pmt[i] = j;
     }
