@@ -2,6 +2,7 @@
 using namespace std;
 const int MAXN = 1e5+2;
 int N, M, A[MAXN];
+
 /*
 Time Complexity:
     1. single point update O(1)
