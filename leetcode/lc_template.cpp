@@ -25,29 +25,30 @@ template<typename T> void print(const T& t) { //print(vector);
 //-------------function-starts---------------------
 class Solution {
 public:
-    int numberOfArithmeticSlices(vector<int>& A) {
-        int N = A.size();
-        vector<map<int,int>> M(N);
-        int cnt = 0;
-        for(int i = 1; i < N; i++) {
-            for(int j = 0; j < i; j++){
-                int diff = A[i] - A[j];
-                if(M[j].find(diff) != M[j].end()){
-                    cnt += M[j][diff];
-                    M[i][diff] = M[j][diff] + 1;
-                } else {
-                    M[i][diff]++;
+    int numberOfArrays(string s, int k) {
+        const int MOD = 1e9 + 7;;
+        int N = s.size();
+        vector<int> dp(N+1,0);
+        dp[0] = 1;
+        for(int i = 0; i < N; i++){
+            long long num = s[i] - '0';
+            int idx = i;
+            while(num <= k && idx > 0){
+                if(num > 0 && s[idx] != '0') {
+                    dp[i+1] = (dp[i+1] + dp[idx]) % MOD;
                 }
+                num += 1LL * pow((long long)10,i-idx+1) * (s[idx-1] - '0');
+                idx--;
             }
+            if(idx == 0 && num > 0 && num <= k) dp[i+1]++;
         }
-        return cnt;
+        return dp[N];
     }
 };
 //-------------function-ends-----------------------
 
 int main(){
     Solution sol;
-    vector<int> input = {2, 4, 6, 8, 10};
-    cout << sol.numberOfArithmeticSlices(input) << endl;
+    cout << sol.numberOfArrays("48486250454844645287030712560644579294181",989) << endl;
     return 0;
 }
