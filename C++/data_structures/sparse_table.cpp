@@ -8,6 +8,16 @@ using namespace std;
 #define print(x) cout << x << endl
 //global variables
 #define MAXN 1000
+
+/*
+Time Complexity:
+    Initialization: O(N*log(N))
+    Query: O(1)
+Space Complexity:
+    O(N)
+Offline RMQ algorithm
+*/
+
 //-----------------------Sparse-Table-starts----------------------------
 int Log2[MAXN] = {0};
 void ST_init(){ for(int i = 2; i <= MAXN; i++) Log2[i] = Log2[i>>1] + 1;}
