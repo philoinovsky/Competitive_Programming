@@ -6,25 +6,8 @@ using namespace std;
 #define REPR(i,start,end,step) for(int i = start; i > end; i += step)
 #define lowbit(x) ((x) & (-x))
 //global variables
+
 //###############################################################################
-//--------------------BIT-starts-------------------------------------------------
-class BIT{
-public:
-    vector<int> tree;
-    BIT(int n){ tree.resize(n,0); }
-    inline void update(int i, int x){
-        for (int pos = i; pos < tree.size(); pos += lowbit(pos)) tree[pos] += x;
-    }
-    inline int query(int n){
-        int ans = 0;
-        for (int pos = n; pos; pos -= lowbit(pos)) ans += tree[pos];
-        return ans;
-    }
-    inline int query(int a, int b){ return query(b) - query(a-1); }
-};
-//--------------------BIT-ends----------------------------------------------------
-
-
 //--------------------BIT-starts-------------------------------------------------
 class BinaryIndexTree{
 public:
@@ -50,5 +33,9 @@ public:
 //###############################################################################
 
 int main(){
+    BinaryIndexTree bit(20);
+    bit.update(2,2);
+    bit.update(3,1);
+    cout << bit.query(2,3) << " " << bit.query(3) << endl;
     return 0;
 }

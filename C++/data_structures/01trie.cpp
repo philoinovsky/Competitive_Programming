@@ -4,6 +4,7 @@ typedef long long ll;
 const int MAXN = 3300000;
 
 //-----------------BitTrie-starts-------------------------
+#define MAXBIT 32 
 class BitTrie{
     vector<vector<int>> next;
     vector<long long> num;
@@ -14,9 +15,6 @@ public:
         next = vector<vector<int>>(N,vector<int>(2,-1));
         num.resize(N);
         cnt = 0;
-        #ifndef MAXBIT
-            #define MAXBIT 32 
-        #endif
     }
     void insert(long long n){
         int cur = 0;
