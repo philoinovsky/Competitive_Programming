@@ -25,30 +25,59 @@ template<typename T> void print(const T& t) { //print(vector);
 //-------------function-starts---------------------
 class Solution {
 public:
-    int numberOfArrays(string s, int k) {
-        const int MOD = 1e9 + 7;;
-        int N = s.size();
-        vector<int> dp(N+1,0);
-        dp[0] = 1;
-        for(int i = 0; i < N; i++){
-            long long num = s[i] - '0';
-            int idx = i;
-            while(num <= k && idx > 0){
-                if(num > 0 && s[idx] != '0') {
-                    dp[i+1] = (dp[i+1] + dp[idx]) % MOD;
-                }
-                num += 1LL * pow((long long)10,i-idx+1) * (s[idx-1] - '0');
-                idx--;
+    bool containsCycle(vector<vector<char>>& grid) {
+        int N = grid.size(), M = grid[0].size();
+        vector<vector<int>> degree(N,vector<int>(M,0));
+        map<pair<int,int>,vector<pair<int,int>>> mm;
+        queue<pair<int,int>> zeroDegree;
+        for(int i = 0; i < N; i++) for(int j = 0; j < M; j++){
+            char e = grid[i][j];
+            if(i > 0 && grid[i-1][j] == e){ //up
+                mm[make_pair(i,j)].push_back(make_pair(i-1,j));
+                degree[i][j]++;
             }
-            if(idx == 0 && num > 0 && num <= k) dp[i+1]++;
+            if(i < N-1 && grid[i+1][j] == e){ //down
+                mm[make_pair(i,j)].push_back(make_pair(i+1,j));
+                degree[i][j]++;
+            }
+            if(j > 0 && grid[i][j-1] == e){ //left
+                mm[make_pair(i,j)].push_back(make_pair(i,j-1));
+                degree[i][j]++;
+            }
+            if(j < M-1 && grid[i][j+1] == e){ //right
+                mm[make_pair(i,j)].push_back(make_pair(i,j+1));
+                degree[i][j]++;
+            }
         }
-        return dp[N];
+        for(int i = 0; i < N; i++) for(int j = 0; j < M; j++){
+            if(degree[i][j] == 1){
+                zeroDegree.push(make_pair(i,j));
+            }
+        }
+        while(!zeroDegree.empty()){
+            pair<int,int> node = zeroDegree.front();
+            degree[node.first][node.second]--;
+            zeroDegree.pop();
+            for(pair<int,int> connectedNode: mm[node]){
+                degree[connectedNode.first][connectedNode.second]--;
+                if(degree[connectedNode.first][connectedNode.second] == 1){
+                    zeroDegree.push(connectedNode);
+                }
+            }
+        }
+        for(int i = 0; i < N; i++) for(int j = 0; j < M; j++){
+            if(degree[i][j] >= 2){
+                return true;
+            }
+        }
+        return false;
     }
 };
 //-------------function-ends-----------------------
 
 int main(){
     Solution sol;
-    cout << sol.numberOfArrays("48486250454844645287030712560644579294181",989) << endl;
+    vector<vector<char>> input = {{'b'},{'b'}};
+    cout << sol.containsCycle(input) << endl;
     return 0;
 }
