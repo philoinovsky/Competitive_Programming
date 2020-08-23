@@ -34,6 +34,7 @@ Steps:
     3. binary search on the stack, the lower_bound of stack is the min / max
 Time Complexity:
     Initialization: O(Q*logQ + N*logN)
+Next Greater Number Problem
 */
 
 //------------------MonotonicalStack-starts----------------------

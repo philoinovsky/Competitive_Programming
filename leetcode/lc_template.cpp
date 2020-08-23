@@ -23,32 +23,54 @@ template<typename T> void print(const T& t) { //print(vector);
 //global variables
 
 //-------------function-starts---------------------
+class MonotonicalStack{
+    int const&(*cmp)(int const&, int const&);
+public:
+    deque<int> sta;
+    MonotonicalStack(){}
+    MonotonicalStack(int const&(*f)(int const&, int const&)):cmp(f){}
+    void insert(int N, int lim){
+        while(!sta.empty() && cmp(sta.back(),N) == N && sta.size() >= lim) sta.pop_front();
+        sta.push_back(N);
+    }
+};
+vector<int> merge(const vector<int> &A, const vector<int> &B){
+    vector<int> res;
+    return res;
+}
 class Solution {
 public:
-    int numberOfArrays(string s, int k) {
-        const int MOD = 1e9 + 7;;
-        int N = s.size();
-        vector<int> dp(N+1,0);
-        dp[0] = 1;
-        for(int i = 0; i < N; i++){
-            long long num = s[i] - '0';
-            int idx = i;
-            while(num <= k && idx > 0){
-                if(num > 0 && s[idx] != '0') {
-                    dp[i+1] = (dp[i+1] + dp[idx]) % MOD;
-                }
-                num += 1LL * pow((long long)10,i-idx+1) * (s[idx-1] - '0');
-                idx--;
-            }
-            if(idx == 0 && num > 0 && num <= k) dp[i+1]++;
+    vector<int> chooseN(vector<int> &nums, int N){
+        MonotonicalStack ms(min);
+        int size = nums.size();
+        vector<int> res;
+        for(int i = 0; i < size; i++){
+            ms.insert(nums[i],N-(size-i-1));
         }
-        return dp[N];
+        while(!ms.sta.empty()){
+            res.push_back(ms.sta.front());
+            ms.sta.pop_front();
+        }
+        return res;
+    }
+    vector<int> maxNumber(vector<int>& nums1, vector<int>& nums2, int k) {
+        if(nums1.size() > nums2.size()) nums1.swap(nums2);
+        int N = nums1.size(), M = nums2.size();
+        int lowerbound = max(0,k-M), upperbound = min(N,k);
+        vector<int> res;
+        for(int n = lowerbound; n <= upperbound; n++){
+            vector<int> A = chooseN(nums1,n), B = chooseN(nums2,k-n);
+            res = max(res,merge(A,B));
+        }
+        return 
     }
 };
 //-------------function-ends-----------------------
 
 int main(){
     Solution sol;
-    cout << sol.numberOfArrays("48486250454844645287030712560644579294181",989) << endl;
+    vector<int> n1 = {}, n2 = {};
+    int k = 5;
+    sol.maxNumber(n1,n2,k);
     return 0;
 }
