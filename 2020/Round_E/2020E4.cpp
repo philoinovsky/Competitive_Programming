@@ -21,6 +21,8 @@ template<typename T> void print(const T& t) { //print(vector);
     cout << endl;
 }
 //global variables
+const int MAXM = 510, MAXN = 310;
+int N, M, S, R, U[MAXM], V[MAXM], CC, C[MAXN][MAXN], KK, K[MAXN][MAXN];
 
 //-------------function-starts---------------------
 //-------------function-ends-----------------------
@@ -36,6 +38,16 @@ int main(){
     cin >> T;
     while(T--){
         //read params to global variables
+        cin >> N >> M >> S >> R;
+        rep(i,M) cin >> U[i] >> V[i];
+        rep(i,N) {
+            cin >> CC;
+            rep(j,CC) cin >> C[i][j];
+        }
+        rep(i,R){
+            cin >> KK;
+            rep(j,KK) cin >> K[i][j];
+        }
         solve();
         printf("Case #%d: \n", iCase++);
     }

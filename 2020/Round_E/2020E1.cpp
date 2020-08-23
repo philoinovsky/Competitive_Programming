@@ -21,14 +21,24 @@ template<typename T> void print(const T& t) { //print(vector);
     cout << endl;
 }
 //global variables
+const int MAXN = 2e5+10;
+int N, A[MAXN];
 
 //-------------function-starts---------------------
 //-------------function-ends-----------------------
 
-void solve(){
-    //init
-    //do things
-    //store results
+int solve(){
+    int last = 989210959, cnt = -1, MAX = 2;
+    REP(i,1,N,1){
+        if(A[i] - A[i-1] == last){
+            cnt++;
+            MAX = max(MAX,cnt);
+        } else {
+            cnt = 2;
+            last = A[i] - A[i-1];
+        }
+    }
+    return MAX;
 }
 
 int main(){
@@ -36,8 +46,9 @@ int main(){
     cin >> T;
     while(T--){
         //read params to global variables
-        solve();
-        printf("Case #%d: \n", iCase++);
+        cin >> N;
+        rep(i,N) cin >> A[i];
+        printf("Case #%d: %d\n", iCase++, solve());
     }
     return 0;
 }

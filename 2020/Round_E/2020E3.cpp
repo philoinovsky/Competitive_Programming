@@ -21,14 +21,55 @@ template<typename T> void print(const T& t) { //print(vector);
     cout << endl;
 }
 //global variables
+const int MAXN = 1e5+10;
+int N, E[MAXN], R[MAXN];
+bool chosen[MAXN];
 
 //-------------function-starts---------------------
 //-------------function-ends-----------------------
 
-void solve(){
-    //init
-    //do things
-    //store results
+pair<int,ll> solve(){
+    ll SUM = 0, SUM2 = 0;
+    int rem = 0, finalrem = 0;
+    rep(i,N) SUM += E[i];
+    rep(i,N) {
+        if(SUM - E[i] < R[i]){
+            break;
+        } else {
+            SUM2 += E[i];
+        }
+    }
+    ll MAX = SUM + SUM2;
+    SUM2 = 0;
+    priority_queue<pair<int,int>> heap;
+    rep(i,N){
+        if(SUM - E[i] < R[i]){
+            rem++;
+            SUM -= E[i];
+            while(!heap.empty() && heap.top().first > SUM){
+                SUM -= heap.top().second;
+                SUM2 -= heap.top().second;
+                heap.pop();
+                rem++;
+            }
+            if(SUM2 + SUM > MAX){
+                MAX = SUM2 + SUM;
+                finalrem = rem;
+            }
+        } else {
+            SUM2 += E[i];
+            heap.push(mp((E[i]+R[i]),E[i]));
+            if(SUM2 + SUM > MAX){
+                MAX = max(MAX, SUM2+SUM);
+                finalrem = rem;
+            }
+        }
+    }
+    if(!heap.empty()){
+        return mp(rem,-1);
+    } else {
+        return mp(finalrem,MAX);
+    }
 }
 
 int main(){
@@ -36,8 +77,15 @@ int main(){
     cin >> T;
     while(T--){
         //read params to global variables
-        solve();
-        printf("Case #%d: \n", iCase++);
+        cin >> N;
+        rep(i,N) cin >> E[i] >> R[i];
+        pair<int,ll> res = solve();
+        printf("Case #%d: ", iCase++);
+        if(res.se == -1){
+            cout << res.fi << " " << "INDEFINITELY" << endl;
+        } else {
+            cout << res.fi << " " << res.se << endl;
+        }
     }
     return 0;
 }
