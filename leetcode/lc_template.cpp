@@ -40,31 +40,6 @@ vector<int> merge(const vector<int> &A, const vector<int> &B){
 }
 class Solution {
 public:
-<<<<<<< HEAD
-    vector<int> chooseN(vector<int> &nums, int N){
-        MonotonicalStack ms(min);
-        int size = nums.size();
-        vector<int> res;
-        for(int i = 0; i < size; i++){
-            ms.insert(nums[i],N-(size-i-1));
-        }
-        while(!ms.sta.empty()){
-            res.push_back(ms.sta.front());
-            ms.sta.pop_front();
-        }
-        return res;
-    }
-    vector<int> maxNumber(vector<int>& nums1, vector<int>& nums2, int k) {
-        if(nums1.size() > nums2.size()) nums1.swap(nums2);
-        int N = nums1.size(), M = nums2.size();
-        int lowerbound = max(0,k-M), upperbound = min(N,k);
-        vector<int> res;
-        for(int n = lowerbound; n <= upperbound; n++){
-            vector<int> A = chooseN(nums1,n), B = chooseN(nums2,k-n);
-            res = max(res,merge(A,B));
-        }
-        return 
-=======
     bool containsCycle(vector<vector<char>>& grid) {
         int N = grid.size(), M = grid[0].size();
         vector<vector<int>> degree(N,vector<int>(M,0));
@@ -111,20 +86,13 @@ public:
             }
         }
         return false;
->>>>>>> 4a1a4ec87add05183bbac7e8a9712f28e65ccf17
     }
 };
 //-------------function-ends-----------------------
 
 int main(){
     Solution sol;
-<<<<<<< HEAD
-    vector<int> n1 = {}, n2 = {};
-    int k = 5;
-    sol.maxNumber(n1,n2,k);
-=======
     vector<vector<char>> input = {{'b'},{'b'}};
     cout << sol.containsCycle(input) << endl;
->>>>>>> 4a1a4ec87add05183bbac7e8a9712f28e65ccf17
     return 0;
 }
