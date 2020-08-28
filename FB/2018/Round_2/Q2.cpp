@@ -21,14 +21,53 @@ template<typename T> void print(const T& t) { //print(vector);
     cout << endl;
 }
 //global variables
+const int MAXN = 2e5+10, MAXM = 1e6+10;
+int N, M, A, B, P[MAXN], C[MAXM];
 
 //-------------function-starts---------------------
 //-------------function-ends-----------------------
 
 void solve(){
     //init
+    unordered_map<int,int> m;
+    vector<int> degree(N,0);
+    deque<int> zerodegree;
+    rep(i,M) m[C[i]]++;
+    vector<priority_queue<int>> v(N);
+    REP(i,1,N,1){
+        degree[P[i]]++;
+    }
+    rep(i,N){
+        v[i].push(i);
+        if(degree[i] == 0) zerodegree.push_back(i);
+    }
+    ll res = 0;
     //do things
+    while(!zerodegree.empty()){
+        int node = zerodegree.front();
+        zerodegree.pop_front();
+        int lim = min((int)v[node].size(),m[node]);
+        rep(i,lim){
+            res += v[node].top();
+            v[node].pop();
+        }
+        if(P[node] != -1){
+            int connectedNode = P[node];
+            degree[connectedNode]--;
+            if(degree[connectedNode] == 0){
+                zerodegree.push_back(connectedNode);
+            }
+            if(v[connectedNode].size() < v[node].size()){
+                swap(v[connectedNode],v[node]);
+            }
+            while(!v[node].empty()){
+                v[connectedNode].push(v[node].top());
+                v[node].pop();
+            }
+        }
+    }
     //store results
+    cout << res << endl;
 }
 
 int main(){
@@ -36,6 +75,10 @@ int main(){
     cin >> T;
     while(T--){
         //read params to global variables
+        cin >> N >> M >> A >> B;
+        P[0] = -1;
+        REP(i,1,N,1) cin >> P[i];
+        rep(i,M) C[i] = (1LL * A * i + B) % N;
         printf("Case #%d: ", iCase++);
         solve();
     }

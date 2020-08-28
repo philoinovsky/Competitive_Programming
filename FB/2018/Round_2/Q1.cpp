@@ -21,14 +21,27 @@ template<typename T> void print(const T& t) { //print(vector);
     cout << endl;
 }
 //global variables
-
+int N, K;
 //-------------function-starts---------------------
 //-------------function-ends-----------------------
 
 void solve(){
-    //init
-    //do things
-    //store results
+    if(N <= 2 || K <= 2){
+        cout << 0 << endl;
+        cout << 1 << endl;
+        cout << 1 << " " << N << " " << 1 << endl;
+        return;
+    }
+    int res = 0, lim = min(N,K);
+    REP(i,1,lim,1) res += K - i;
+    res -= K;
+    cout << res << endl;
+    cout << lim << endl;
+    cout << 1 << " " << N << " " << K << endl;
+    REP(i,1,lim-1,1){
+        cout << i << " " << i + 1 << " " << K - i << endl;
+    }
+    cout << lim-1 << " " << N << " " << K-lim+1 << endl;
 }
 
 int main(){
@@ -36,6 +49,7 @@ int main(){
     cin >> T;
     while(T--){
         //read params to global variables
+        cin >> N >> K;
         printf("Case #%d: ", iCase++);
         solve();
     }
