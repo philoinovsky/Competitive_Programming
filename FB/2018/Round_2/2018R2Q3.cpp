@@ -21,6 +21,8 @@ template<typename T> void print(const T& t) { //print(vector);
     cout << endl;
 }
 //global variables
+const int MAXN = 52;
+ll N, S, E, X[MAXN], Y[MAXN];
 
 //-------------function-starts---------------------
 //-------------function-ends-----------------------
@@ -36,6 +38,8 @@ int main(){
     cin >> T;
     while(T--){
         //read params to global variables
+        cin >> N >> S >> E;
+        rep(i,N) cin >> X[i] >> Y[i];
         printf("Case #%d: ", iCase++);
         solve();
     }
