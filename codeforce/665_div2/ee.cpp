@@ -33,20 +33,17 @@ main()
     cin >> n >> m;
     for(int i = 0; i < p; i++)
 	l[i + p] = r[i + p] = i;
-    for(int i = p; --i;)
-    {
+    for(int i = p; --i;) {
 	    l[i] = l[i << 1];
 	    r[i] = r[(i << 1) + 1];
     }
-    for(int i = 0; i < n; i++)
-    {
+    for(int i = 0; i < n; i++) {
 	    cin >> h[i].k >> h[i].l >> h[i].r;
 	    if(h[i].r - h[i].l == 1000000)
 	        s++;
     }
     sort(h, h + n, C);
-    for(int i = 0; i < m; i++)
-    {
+    for(int i = 0; i < m; i++) {
 	    int j = i << 1;
 	    cin >> v[j].k >> v[j].l >> v[j+1].l;
 	    v[j + 1].k = v[j].k;
@@ -56,10 +53,8 @@ main()
 	        s++;
     }
     sort(v, v + 2 * m, D);
-    for(int i = 0, j = 0; i < n && j < 2 * m;)
-    {
-	    if(h[i].k < v[j].l || h[i].k == v[j].l && v[j].r < 0)
-	    {
+    for(int i = 0, j = 0; i < n && j < 2 * m;) {
+	    if(h[i].k < v[j].l || h[i].k == v[j].l && v[j].r < 0) {
 	        s += sum(h[i].l, h[i].r, 1);
 	        i++;
 	    } else {
