@@ -13,6 +13,8 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 //global variables
+const int MAXN = 1e5+10;
+int N, M, Y[MAXN], LX[MAXN], RX[MAXN], X[MAXN], LY[MAXN], RY[MAXN];
 
 //-------------function-starts---------------------
 //-------------function-ends-----------------------
@@ -24,11 +26,9 @@ void solve(){
 }
 
 int main(){
-    int T;
-    cin >> T;
-    while(T--){
-        //read params to global variables
-        solve();
-    }
+    cin >> N >> M;
+    rep(i,N) cin >> Y[i] >> LX[i] >> RX[i];
+    rep(i,M) cin >> X[i] >> LY[i] >> RY[i];
+    solve();
     return 0;
 }
