@@ -21,6 +21,8 @@ template<typename T> void print(const T& t) { //print(vector);
     cout << endl;
 }
 //global variables
+const ll MOD = 1e9+10, MAXN = 1e6+10;
+ll N, M, E, K, X[MAXN], AX, BX, CX, Y[MAXN], AY, BY, CY, I[MAXN], AI, BI, CI, W[MAXN], AW, BW, CW;
 
 //-------------function-starts---------------------
 //-------------function-ends-----------------------
@@ -36,6 +38,19 @@ int main(){
     cin >> T;
     while(T--){
         //read params to global variables
+        cin >> N >> M >> E >> K;
+        rep(i,K) cin >> X[i];
+        cin >> AX >> BX >> CX;
+        REP(i,K,N,1) X[i] = (AX * X[i-2] + BX * X[i-1] * CX) % M;
+        rep(i,K) cin >> Y[i];
+        cin >> AY >> BY >> CY;
+        REP(i,K,N,1) X[i] = (AY * Y[i-2] + BY * Y[i-1] * CY) % M;
+        rep(i,K) cin >> I[i];
+        cin >> AI >> BI >> CI;
+        REP(i,K,E,1) X[i] = (AI * I[i-2] + BI * I[i-1] * CI) % (N* M + N);
+        rep(i,K) cin >> W[i];
+        cin >> AW >> BW >> CW;
+        REP(i,K,E,1) W[i] = (AW * W[i-2] + BW * W[i-1] * CW) % (1000000000);
         printf("Case #%d: ", iCase++);
         solve();
     }

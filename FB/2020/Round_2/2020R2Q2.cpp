@@ -21,14 +21,45 @@ template<typename T> void print(const T& t) { //print(vector);
     cout << endl;
 }
 //global variables
+const int MAXN = 8010;
+int N;
+double P, dp[MAXN], tmp[MAXN];
 
 //-------------function-starts---------------------
 //-------------function-ends-----------------------
 
 void solve(){
-    //init
-    //do things
-    //store results
+    dp[0] = dp[1] = 1;
+    REP(NN,2,N,1){
+        rep(i,NN){
+            tmp[i] = dp[i];
+            dp[i] = (NN + 1) * NN / 2;
+        }
+        dp[NN] = (NN + 1) * NN / 2;
+        rep(i,NN+1){
+            // total = NN + 1
+            // left count = i, right count = NN - i
+            // left and left
+            if(i > 0)
+                dp[i] += i * (i - 1) * tmp[i-1] / 2;
+            // left and right
+            if(i > 0 && i < NN)
+                dp[i] += i * (NN - i) * (P * tmp[i-1] + (1 - P) * tmp[i]);
+            // right and right
+            if(i < NN)
+                dp[i] += (NN - i) * (NN - i - 1) * tmp[i] / 2;
+            // self and left
+            if(i > 0)
+                dp[i] += i * P * tmp[i-1];
+            // self and right
+            if(i < NN)
+                dp[i] += (NN - i) * (1 - P) * tmp[i];
+            dp[i] /= (NN + 1) * NN / 2;;
+        }
+    }
+    rep(i,N){
+        printf("%.10f\n", dp[i]);
+    }
 }
 
 int main(){
@@ -36,7 +67,8 @@ int main(){
     cin >> T;
     while(T--){
         //read params to global variables
-        printf("Case #%d: ", iCase++);
+        cin >> N >> P;
+        printf("Case #%d: \n", iCase++);
         solve();
     }
     return 0;
