@@ -32,7 +32,7 @@ main()
     LL m, n, s = 1;
     cin >> n >> m;
     for(int i = 0; i < p; i++)
-	l[i + p] = r[i + p] = i;
+	    l[i + p] = r[i + p] = i;
     for(int i = p; --i;) {
 	    l[i] = l[i << 1];
 	    r[i] = r[(i << 1) + 1];
