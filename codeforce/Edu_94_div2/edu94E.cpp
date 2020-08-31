@@ -13,36 +13,21 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 //global variables
-const int MAXN = 3010;
+const int MAXN = 5010;
 int N, A[MAXN];
 
 //-------------function-starts---------------------
 //-------------function-ends-----------------------
 
 void solve(){
-    map<pair<int,int>,int> m;
-    ll res = 0;
-    m[mp(A[N-2],A[N-1])] = 1;
-    repr(j,N-3){
-        rep(i,j){
-            if(m.find(mp(A[i],A[j])) != m.end())
-                res += m[mp(A[i],A[j])];
-        }
-        REP(i,j+1,N,1){
-            m[mp(A[j],A[i])]++;
-        }
-    }
-    cout << res << endl;
+    //init
+    //do things
+    //store results
 }
 
 int main(){
-    int T;
-    cin >> T;
-    while(T--){
-        //read params to global variables
-        cin >> N;
-        rep(i,N) cin >> A[i];
-        solve();
-    }
+    cin >> N;
+    rep(i,N) cin >> A[i];
+    solve();
     return 0;
 }
