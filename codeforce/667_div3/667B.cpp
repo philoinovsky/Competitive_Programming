@@ -13,14 +13,22 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 //global variables
+int A, B, X, Y, N;
 
 //-------------function-starts---------------------
 //-------------function-ends-----------------------
 
 void solve(){
     //init
-    //do things
-    //store results
+    if (A - X + B - Y <= N){
+        cout << 1LL * X * Y << endl;
+        return;
+    }
+    int diff = min(A-X,N);
+    ll res = 1LL * (A-diff) * (B-(N-diff));
+    diff = min(B-Y,N);
+    res = min(res,1LL*(B-diff)*(A-(N-diff)));
+    cout << res << endl;
 }
 
 int main(){
@@ -28,6 +36,7 @@ int main(){
     cin >> T;
     while(T--){
         //read params to global variables
+        cin >> A >> B >> X >> Y >> N;
         solve();
     }
     return 0;

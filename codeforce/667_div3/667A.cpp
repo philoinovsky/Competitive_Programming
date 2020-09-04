@@ -13,11 +13,14 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 //global variables
+int A, B;
 
 //-------------function-starts---------------------
 //-------------function-ends-----------------------
 
 void solve(){
+    int diff = abs(A-B);
+    cout << (diff + 9) / 10 << endl;
     //init
     //do things
     //store results
@@ -28,6 +31,7 @@ int main(){
     cin >> T;
     while(T--){
         //read params to global variables
+        cin >> A >> B;
         solve();
     }
     return 0;
