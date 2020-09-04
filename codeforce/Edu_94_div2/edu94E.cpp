@@ -28,7 +28,7 @@ int calc(int pos, int x){
         if (A[x] >= A[pos]){
             res = min(res, calc(pos+1,pos));
         } else {
-            res = min(res, calc(pos + 1, pos) + A[pos] - a[x]);
+            res = min(res, calc(pos + 1, pos) + A[pos] - A[x]);
             res = min(res, 1 + calc(pos + 1, x));
         }
     }
