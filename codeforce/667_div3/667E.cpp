@@ -13,14 +13,14 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 //global variables
-#define MAXN 100100
-int N, V[MAXN], U[MAXN], W[MAXN]; 
-ll S;
 
 //-------------function-starts---------------------
 //-------------function-ends-----------------------
 
 void solve(){
+    //init
+    //do things
+    //store results
 }
 
 int main(){
@@ -28,10 +28,6 @@ int main(){
     cin >> T;
     while(T--){
         //read params to global variables
-        cin >> N >> S;
-        rep(i,N-1){
-            cin >> V[i] >> U[i] >> W[i];
-        }
         solve();
     }
     return 0;
