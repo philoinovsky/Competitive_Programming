@@ -14,7 +14,7 @@ typedef long long ll;
 typedef unsigned long long ull;
 //global variables
 #define MAXN 100100
-int N, V[MAXN], U[MAXN], W[MAXN]; 
+int N, V[MAXN], U[MAXN], W[MAXN], C[MAXN]; 
 ll S;
 
 //-------------function-starts---------------------
@@ -85,7 +85,7 @@ int main(){
         //read params to global variables
         cin >> N >> S;
         rep(i,N-1){
-            cin >> V[i] >> U[i] >> W[i];
+            cin >> V[i] >> U[i] >> W[i] >> C[i];
         }
         solve();
     }
