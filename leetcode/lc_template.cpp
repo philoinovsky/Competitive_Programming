@@ -23,76 +23,37 @@ template<typename T> void print(const T& t) { //print(vector);
 //global variables
 
 //-------------function-starts---------------------
-class MonotonicalStack{
-    int const&(*cmp)(int const&, int const&);
-public:
-    deque<int> sta;
-    MonotonicalStack(){}
-    MonotonicalStack(int const&(*f)(int const&, int const&)):cmp(f){}
-    void insert(int N, int lim){
-        while(!sta.empty() && cmp(sta.back(),N) == N && sta.size() >= lim) sta.pop_front();
-        sta.push_back(N);
-    }
-};
-vector<int> merge(const vector<int> &A, const vector<int> &B){
-    vector<int> res;
-    return res;
-}
 class Solution {
 public:
-    bool containsCycle(vector<vector<char>>& grid) {
-        int N = grid.size(), M = grid[0].size();
-        vector<vector<int>> degree(N,vector<int>(M,0));
-        map<pair<int,int>,vector<pair<int,int>>> mm;
-        queue<pair<int,int>> zeroDegree;
-        for(int i = 0; i < N; i++) for(int j = 0; j < M; j++){
-            char e = grid[i][j];
-            if(i > 0 && grid[i-1][j] == e){ //up
-                mm[make_pair(i,j)].push_back(make_pair(i-1,j));
-                degree[i][j]++;
-            }
-            if(i < N-1 && grid[i+1][j] == e){ //down
-                mm[make_pair(i,j)].push_back(make_pair(i+1,j));
-                degree[i][j]++;
-            }
-            if(j > 0 && grid[i][j-1] == e){ //left
-                mm[make_pair(i,j)].push_back(make_pair(i,j-1));
-                degree[i][j]++;
-            }
-            if(j < M-1 && grid[i][j+1] == e){ //right
-                mm[make_pair(i,j)].push_back(make_pair(i,j+1));
-                degree[i][j]++;
+    int findLengthOfShortestSubarray(vector<int>& arr) {
+        arr.push_back(0x7fffffff);
+        int N = arr.size();
+        int left = N, right = -1;
+        for(int i = 1; i < N; i++){
+            if(arr[i] < arr[i-1]){
+                left = min(left,i);
+                right = max(right,i);
             }
         }
-        for(int i = 0; i < N; i++) for(int j = 0; j < M; j++){
-            if(degree[i][j] == 1){
-                zeroDegree.push(make_pair(i,j));
+        if(left > right){
+            return 0;
+        } else {
+            vector<int> ordered;
+            for(int i = 0; i < left; i++)
+                ordered.push_back(arr[i]);
+            int MIN = N;
+            for(int i = right; i < N; i++){
+                MIN = min(MIN,(int)(i - (upper_bound(ordered.begin(),ordered.end(),arr[i])-ordered.begin())));
             }
+            return MIN;
         }
-        while(!zeroDegree.empty()){
-            pair<int,int> node = zeroDegree.front();
-            degree[node.first][node.second]--;
-            zeroDegree.pop();
-            for(pair<int,int> connectedNode: mm[node]){
-                degree[connectedNode.first][connectedNode.second]--;
-                if(degree[connectedNode.first][connectedNode.second] == 1){
-                    zeroDegree.push(connectedNode);
-                }
-            }
-        }
-        for(int i = 0; i < N; i++) for(int j = 0; j < M; j++){
-            if(degree[i][j] >= 2){
-                return true;
-            }
-        }
-        return false;
     }
 };
 //-------------function-ends-----------------------
 
 int main(){
     Solution sol;
-    vector<vector<char>> input = {{'b'},{'b'}};
-    cout << sol.containsCycle(input) << endl;
+    vector<int> input = {2,2,2,1,1,1};
+    sol.findLengthOfShortestSubarray(input);
     return 0;
 }
