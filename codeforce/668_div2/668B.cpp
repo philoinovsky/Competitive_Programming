@@ -13,12 +13,26 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 //global variables
+const int MAXN = 1e5+10;
+ll N, A[MAXN];
 
 //-------------function-starts---------------------
 //-------------function-ends-----------------------
 
 void solve(){
     //init
+    ll remain = 0, tot = 0;
+    repr(i,N-1){
+        if(A[i] < 0) {
+            remain -= A[i];
+        } else if (A[i] > 0){
+            int diff = min(A[i],remain);
+            A[i] -= diff;
+            remain -= diff;
+            tot += A[i];
+        }
+    }
+    cout << tot << endl;
     //do things
     //store results
 }
@@ -28,6 +42,8 @@ int main(){
     cin >> T;
     while(T--){
         //read params to global variables
+        cin >> N;
+        rep(i,N) cin >> A[i];
         solve();
     }
     return 0;
