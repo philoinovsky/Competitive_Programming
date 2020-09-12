@@ -13,14 +13,31 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 //global variables
+const int MAXN = 1e5+10;
+ll N, A[MAXN];
 
 //-------------function-starts---------------------
+ll bruteforce(vector<ll> &A){
+    ll NN = A.size();
+    ll MAX = LLONG_MIN;
+    rep(i,NN)REP(j,i+1,NN,1)REP(k,j+1,NN,1)REP(l,k+1,NN,1)REP(t,l+1,NN,1){
+        MAX = max(MAX,A[i]*A[j]*A[k]*A[l]*A[t]);
+    }
+    return MAX;
+}
 //-------------function-ends-----------------------
 
 void solve(){
     //init
-    //do things
-    //store results
+    sort(A,A+N);
+    vector<ll> input;
+    if(N < 10){
+        rep(i,N) input.push_back(A[i]);
+    } else {
+        rep(i,5) input.push_back(A[i]);
+        rep(i,5) input.push_back(A[N-1-i]);
+    }
+    cout << bruteforce(input) << endl;
 }
 
 int main(){
@@ -28,6 +45,8 @@ int main(){
     cin >> T;
     while(T--){
         //read params to global variables
+        cin >> N;
+        rep(i,N) cin >> A[i];
         solve();
     }
     return 0;
