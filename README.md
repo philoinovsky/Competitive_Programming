@@ -1,6 +1,6 @@
 # Competitive Programming
 Competitive Programming in C++
-```
+```.
 ├── #C++
 │   ├── algorithms
 │   │   ├── KMP.cpp
@@ -26,6 +26,108 @@ Competitive Programming in C++
 ├── #Python
 │   ├── DSU.py
 │   └── template.py
+├── Codeforces
+│   ├── 66X
+│   │   ├── 660_div2
+│   │   │   ├── B.cpp
+│   │   │   ├── C.cpp
+│   │   │   ├── in
+│   │   │   └── k
+│   │   ├── 661_div3
+│   │   │   ├── 661A.cpp
+│   │   │   ├── 661B.cpp
+│   │   │   ├── 661C.cpp
+│   │   │   ├── 661D.cpp
+│   │   │   ├── 661E1.cpp
+│   │   │   ├── 661E2.cpp
+│   │   │   ├── in
+│   │   │   └── k
+│   │   ├── 662_div2
+│   │   │   ├── A.cpp
+│   │   │   ├── B.cpp
+│   │   │   ├── C.cpp
+│   │   │   ├── D.cpp
+│   │   │   ├── in
+│   │   │   └── k
+│   │   ├── 663_div2
+│   │   │   ├── A.cpp
+│   │   │   ├── B.cpp
+│   │   │   ├── C.cpp
+│   │   │   ├── D.cpp
+│   │   │   ├── in
+│   │   │   └── k
+│   │   ├── 664_div2
+│   │   │   ├── 664A.cpp
+│   │   │   ├── 664B.cpp
+│   │   │   ├── 664C.cpp
+│   │   │   ├── 664D.cpp
+│   │   │   ├── in
+│   │   │   └── k
+│   │   ├── 665_div2
+│   │   │   ├── 665A.cpp
+│   │   │   ├── 665B.cpp
+│   │   │   ├── 665C.cpp
+│   │   │   ├── 665D.cpp
+│   │   │   └── 665E.cpp
+│   │   ├── 666_div2
+│   │   │   ├── D.cpp
+│   │   │   ├── E.cpp
+│   │   │   └── in
+│   │   ├── 667_div3
+│   │   │   ├── 667A.cpp
+│   │   │   ├── 667B.cpp
+│   │   │   ├── 667C.cpp
+│   │   │   ├── 667D.cpp
+│   │   │   ├── 667E.cpp
+│   │   │   ├── 667F.cpp
+│   │   │   ├── ff.cpp
+│   │   │   └── in
+│   │   └── 668_div2
+│   │       ├── 668A.cpp
+│   │       ├── 668B.cpp
+│   │       ├── 668C.cpp
+│   │       ├── 668D.cpp
+│   │       ├── in
+│   │       └── k
+│   ├── 670_div2
+│   │   ├── 670A.cpp
+│   │   ├── 670B.cpp
+│   │   ├── 670C.cpp
+│   │   ├── 670D.cpp
+│   │   ├── 670E.cpp
+│   │   ├── in
+│   │   └── k
+│   ├── Edu_92_div2
+│   │   ├── E92D2A.cpp
+│   │   ├── E92D2B.cpp
+│   │   ├── E92D2C.cpp
+│   │   ├── in
+│   │   └── k
+│   ├── Edu_93_div2
+│   │   ├── A.cpp
+│   │   ├── B.cpp
+│   │   ├── C.cpp
+│   │   ├── D.cpp
+│   │   ├── E.cpp
+│   │   ├── in
+│   │   └── k
+│   ├── Edu_94_div2
+│   │   ├── edu94A.cpp
+│   │   ├── edu94B.cpp
+│   │   ├── edu94C.cpp
+│   │   ├── edu94D.cpp
+│   │   ├── edu94E.cpp
+│   │   ├── ee.cpp
+│   │   ├── in
+│   │   └── k
+│   ├── Edu_95_div2
+│   │   ├── edu95A.cpp
+│   │   ├── edu95B.cpp
+│   │   ├── edu95C.cpp
+│   │   ├── edu95D.cpp
+│   │   ├── edu95E.cpp
+│   │   └── in
+│   └── cf_template.cpp
 ├── FacebookHackerCup
 │   ├── 2018
 │   │   └── Round_2
@@ -234,10 +336,6 @@ Competitive Programming in C++
 │       │   ├── in
 │       │   └── k
 │       └── Round_F
-│           ├── gen.py
-│           ├── in
-│           ├── k
-│           └── k.cpp
 ├── LeetCode
 │   ├── in
 │   ├── k
@@ -248,109 +346,7 @@ Competitive Programming in C++
 │   │   └── functions.sql
 │   └── test.cpp
 ├── README.md
-├── codeforces
-│   ├── 66X
-│   │   ├── 660_div2
-│   │   │   ├── B.cpp
-│   │   │   ├── C.cpp
-│   │   │   ├── in
-│   │   │   └── k
-│   │   ├── 661_div3
-│   │   │   ├── 661A.cpp
-│   │   │   ├── 661B.cpp
-│   │   │   ├── 661C.cpp
-│   │   │   ├── 661D.cpp
-│   │   │   ├── 661E1.cpp
-│   │   │   ├── 661E2.cpp
-│   │   │   ├── in
-│   │   │   └── k
-│   │   ├── 662_div2
-│   │   │   ├── A.cpp
-│   │   │   ├── B.cpp
-│   │   │   ├── C.cpp
-│   │   │   ├── D.cpp
-│   │   │   ├── in
-│   │   │   └── k
-│   │   ├── 663_div2
-│   │   │   ├── A.cpp
-│   │   │   ├── B.cpp
-│   │   │   ├── C.cpp
-│   │   │   ├── D.cpp
-│   │   │   ├── in
-│   │   │   └── k
-│   │   ├── 664_div2
-│   │   │   ├── 664A.cpp
-│   │   │   ├── 664B.cpp
-│   │   │   ├── 664C.cpp
-│   │   │   ├── 664D.cpp
-│   │   │   ├── in
-│   │   │   └── k
-│   │   ├── 665_div2
-│   │   │   ├── 665A.cpp
-│   │   │   ├── 665B.cpp
-│   │   │   ├── 665C.cpp
-│   │   │   ├── 665D.cpp
-│   │   │   └── 665E.cpp
-│   │   ├── 666_div2
-│   │   │   ├── D.cpp
-│   │   │   ├── E.cpp
-│   │   │   └── in
-│   │   ├── 667_div3
-│   │   │   ├── 667A.cpp
-│   │   │   ├── 667B.cpp
-│   │   │   ├── 667C.cpp
-│   │   │   ├── 667D.cpp
-│   │   │   ├── 667E.cpp
-│   │   │   ├── 667F.cpp
-│   │   │   ├── ff.cpp
-│   │   │   └── in
-│   │   └── 668_div2
-│   │       ├── 668A.cpp
-│   │       ├── 668B.cpp
-│   │       ├── 668C.cpp
-│   │       ├── 668D.cpp
-│   │       ├── in
-│   │       └── k
-│   ├── 670_div2
-│   │   ├── 670A.cpp
-│   │   ├── 670B.cpp
-│   │   ├── 670C.cpp
-│   │   ├── 670D.cpp
-│   │   ├── 670E.cpp
-│   │   ├── in
-│   │   └── k
-│   ├── Edu_92_div2
-│   │   ├── E92D2A.cpp
-│   │   ├── E92D2B.cpp
-│   │   ├── E92D2C.cpp
-│   │   ├── in
-│   │   └── k
-│   ├── Edu_93_div2
-│   │   ├── A.cpp
-│   │   ├── B.cpp
-│   │   ├── C.cpp
-│   │   ├── D.cpp
-│   │   ├── E.cpp
-│   │   ├── in
-│   │   └── k
-│   ├── Edu_94_div2
-│   │   ├── edu94A.cpp
-│   │   ├── edu94B.cpp
-│   │   ├── edu94C.cpp
-│   │   ├── edu94D.cpp
-│   │   ├── edu94E.cpp
-│   │   ├── ee.cpp
-│   │   ├── in
-│   │   └── k
-│   ├── Edu_95_div2
-│   │   ├── edu95A.cpp
-│   │   ├── edu95B.cpp
-│   │   ├── edu95C.cpp
-│   │   ├── edu95D.cpp
-│   │   ├── edu95E.cpp
-│   │   └── in
-│   └── cf_template.cpp
 └── update.sh
 
-66 directories, 284 files
+66 directories, 280 files
 ```
