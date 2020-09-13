@@ -13,15 +13,17 @@ Competitive Programming in C++
 │   │       ├── KMP.cpp
 │   │       └── manacher.cpp
 │   ├── data_structures
-│   │   ├── 01trie.cpp
-│   │   ├── Mo's_algorithm.cpp
-│   │   ├── binary_index_tree.cpp
-│   │   ├── block_array.cpp
-│   │   ├── monotonical_queue&stack.cpp
-│   │   ├── segment_tree.cpp
-│   │   ├── sparse_table.cpp
-│   │   ├── trie.cpp
-│   │   └── union_find.cpp
+│   │   ├── misc
+│   │   │   ├── 01trie.cpp
+│   │   │   ├── monotonical_queue&stack.cpp
+│   │   │   ├── trie.cpp
+│   │   │   └── union_find.cpp
+│   │   └── segment_and_block
+│   │       ├── Mo's_algorithm.cpp
+│   │       ├── binary_index_tree.cpp
+│   │       ├── block_array.cpp
+│   │       ├── segment_tree.cpp
+│   │       └── sparse_table.cpp
 │   ├── functions.cpp
 │   └── template.cpp
 ├── #Python
@@ -350,5 +352,5 @@ Competitive Programming in C++
 ├── README.md
 └── update.sh
 
-69 directories, 279 files
+71 directories, 279 files
 ```
