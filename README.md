@@ -1,6 +1,6 @@
 # Competitive Programming
 Competitive Programming in C++
-.
+```
 ├── #C++
 │   ├── algorithms
 │   │   ├── KMP.cpp
@@ -353,3 +353,4 @@ Competitive Programming in C++
 └── update.sh
 
 66 directories, 284 files
+```
