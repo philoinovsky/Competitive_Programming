@@ -13,14 +13,25 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 //global variables
+const int MAXN = 2e5+10;
+int N, A[MAXN];
 
 //-------------function-starts---------------------
 //-------------function-ends-----------------------
 
 void solve(){
-    //init
-    //do things
-    //store results
+    vector<vector<int>> dp(N+1,vector<int>(2,0));
+    dp[0][0] = dp[0][1] = dp[1][1] = INT_MAX - 100000;
+    dp[1][0] = A[0];
+    if(N >= 2){
+        dp[2][0] = A[0] + A[1];
+        dp[2][1] = A[0];        
+    }
+    REP(i,3,N+1,1){
+        dp[i][0] = min(dp[i-1][1]+A[i-1], dp[i-2][1]+A[i-1]+A[i-2]);
+        dp[i][1] = min(dp[i-1][0],dp[i-2][0]);
+    }
+    cout << min(dp[N][0],dp[N][1]) << endl;
 }
 
 int main(){
@@ -28,6 +39,8 @@ int main(){
     cin >> T;
     while(T--){
         //read params to global variables
+        cin >> N;
+        rep(i,N) cin >> A[i];
         solve();
     }
     return 0;

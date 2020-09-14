@@ -13,14 +13,13 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 //global variables
+ll X, Y, K;
 
 //-------------function-starts---------------------
 //-------------function-ends-----------------------
 
 void solve(){
-    //init
-    //do things
-    //store results
+    cout << (K * Y + K - 1 + X - 1 - 1) / (X - 1) + K << endl;
 }
 
 int main(){
@@ -28,6 +27,7 @@ int main(){
     cin >> T;
     while(T--){
         //read params to global variables
+        cin >> X >> Y >> K;
         solve();
     }
     return 0;
