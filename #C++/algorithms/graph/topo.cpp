@@ -12,11 +12,34 @@ using namespace std;
 #define lowbit(x) ((x) & (-x))
 typedef long long ll;
 typedef unsigned long long ull;
+template <typename T, size_t size> void print(const T (&array)[size], int range){ //print(array,N);
+    for(size_t i = 0; i < (uint)range; ++i) std::cout << array[i] << " "; 
+    cout << endl;
+}
+template<typename T> void print(const T& t) { //print(vector);
+    std::copy(t.cbegin(), t.cend(), std::ostream_iterator<typename T::value_type>(std::cout, " "));
+    cout << endl;
+}
 //global variables
 const int MAXN = 1e5+10;
 int N, X, Y;
 vector<vector<int>> graph;
 
+/*
+All functions in this file are implemented using topological sort method
+requirements:
+    N: int -> nodes count
+    graph format: int -> vector<int>, which is the connectednode vector
+functions list:
+    1. int distance(int A, int B), return distance between point A and B
+        time: O(N), space: O(N)
+    2. pair<int,int> diameter(int start), first time: returns one node on the diameter path, second time: return another node
+        time: O(N), space: O(N)
+    3. void topo(vector<int> &cnt) use topological sort to calculate relationships in the graph
+        time: O(N), spcae: O(N)
+    *4. bool hascycle(): return true if graph has cycle
+        time: O(N), space: O(N)
+*/
 //-------------function-starts---------------------
 int distance(int A, int B){
     deque<int> Q = {A};

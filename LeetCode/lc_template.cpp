@@ -25,40 +25,35 @@ template<typename T> void print(const T& t) { //print(vector);
 //-------------function-starts---------------------
 class Solution {
 public:
-    bool isTransformable(string s, string t) {
-        int cnts[10] = {0}, cntt[10] = {0};
-        int N = s.size(), M = t.size();
-        if(N != M) return false;
+    int minSubarray(vector<int>& A, int p) {
+        int N = A.size();
+        map<int,int> presum;
+        int totsum = 0;
+        rep(i,N)
+            totsum = (totsum + A[i]) % p;
+        if(totsum == 0)
+            return 0;
+        int diff = p - totsum, last = 0;
+        int MIN = INT_MAX;
         rep(i,N){
-            cnts[s[i]-'0']++;
-            cntt[t[i]-'0']++;
-        }
-        rep(i,10) if(cnts[i] != cntt[i]) return false;
-        vector<deque<vector<int>>> q(10);
-        int cnt[10] = {0};
-        repr(i,N-1){
-            vector<int> tmp(10);
-            REP(j,'0',s[i],1){
-                tmp[j-'0'] = cnt[j-'0'];
+            int sum = (last + A[i]) % p;
+            int target = (sum + diff) % p;
+            cout << target << " ";
+            if(presum.find(target) != presum.end()){
+                MIN = min(MIN,i-presum[target]);
             }
-            q[s[i]-'0'].push_back(tmp);
-            cnt[s[i]-'0']++;
+            presum[sum] = i;
+            last = sum;
         }
-        rep(i,10) cnt[i] = 0;
-        repr(i,N-1){
-            REP(j,'0',t[i],1){
-                if(q[t[i]-'0'].front()[j-'0'] < cnt[j-'0'])
-                    return false;
-            }
-            q[t[i]-'0'].pop_front();
-        }
-        return true;
+        cout << endl;
+        return (MIN) >= N ? -1 : MIN;
     }
 };
 //-------------function-ends-----------------------
 
 int main(){
     Solution sol;
-    sol.isTransformable("12345","12435");
+    vector<int> input = {8,32,31,18,34,20,21,13,1,27,23,22,11,15,30,4,2};
+    sol.minSubarray(input,148);
     return 0;
 }
