@@ -26,7 +26,7 @@ int N, X, Y;
 vector<vector<int>> graph;
 
 /*
-All functions in this file are implemented using topological sort method
+All functions in this file are implemented using (topological sort / BFS) method
 requirements:
     N: int -> nodes count
     graph format: int -> vector<int>, which is the connectednode vector

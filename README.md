@@ -3,6 +3,8 @@ Competitive Programming in C++
 ```.
 ├── #C++
 │   ├── algorithms
+│   │   ├── array
+│   │   │   └── array.cpp
 │   │   ├── graph
 │   │   │   ├── kruskal.cpp
 │   │   │   ├── lowest_common_ancestor.cpp
@@ -352,5 +354,5 @@ Competitive Programming in C++
 ├── README.md
 └── update.sh
 
-69 directories, 281 files
+70 directories, 282 files
 ```
