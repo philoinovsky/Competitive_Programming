@@ -36,8 +36,10 @@ Competitive Programming in C++
 ├── Codeforces
 │   ├── 66X
 │   │   ├── 660_div2
-│   │   │   ├── B.cpp
-│   │   │   ├── C.cpp
+│   │   │   ├── 660A.cpp
+│   │   │   ├── 660B.cpp
+│   │   │   ├── 660C.cpp
+│   │   │   ├── 660D.cpp
 │   │   │   ├── in
 │   │   │   └── k
 │   │   ├── 661_div3
@@ -354,5 +356,5 @@ Competitive Programming in C++
 ├── README.md
 └── update.sh
 
-70 directories, 282 files
+70 directories, 284 files
 ```

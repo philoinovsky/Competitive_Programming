@@ -25,35 +25,26 @@ template<typename T> void print(const T& t) { //print(vector);
 //-------------function-starts---------------------
 class Solution {
 public:
-    int minSubarray(vector<int>& A, int p) {
-        int N = A.size();
-        map<int,int> presum;
-        int totsum = 0;
-        rep(i,N)
-            totsum = (totsum + A[i]) % p;
-        if(totsum == 0)
-            return 0;
-        int diff = p - totsum, last = 0;
-        int MIN = INT_MAX;
-        rep(i,N){
-            int sum = (last + A[i]) % p;
-            int target = (sum + diff) % p;
-            cout << target << " ";
-            if(presum.find(target) != presum.end()){
-                MIN = min(MIN,i-presum[target]);
-            }
-            presum[sum] = i;
-            last = sum;
+    int maxProductPath(vector<vector<int>>& grid) {
+        int N = grid.size(), M = grid[0].size();
+        int haszero = -1;
+        rep(i,N) rep(j,M) if(grid[i][j] == 0) haszero = 0;
+        vector<vector<pair<ll,ll>>> dp(N+1,vector<pair<ll,ll>>(M+1));
+        dp[0][1] = dp[1][0] = mp(1,1);
+        REP(i,1,N,1) REP(j,1,M,1) {
+            ll MAX = max(dp[i+1][j].first,dp[i][j+1].first);
+            ll MIN = min(dp[i+1][j].second,dp[i][j+1].second);
+            dp[i+1][j+1].first = max(MAX*grid[i][j],MIN*grid[i][j]);
+            dp[i+1][j+1].second = min(MAX*grid[i][j],MIN*grid[i][j]);
         }
-        cout << endl;
-        return (MIN) >= N ? -1 : MIN;
+        return (dp[N][M].first == 0) ? haszero : dp[N][M].first;
     }
 };
 //-------------function-ends-----------------------
 
 int main(){
     Solution sol;
-    vector<int> input = {8,32,31,18,34,20,21,13,1,27,23,22,11,15,30,4,2};
-    sol.minSubarray(input,148);
+    vector<vector<int>> input = {{-1,-2,-3},{-2,-3,-3},{-3,-3,-2}};
+    sol.maxProductPath(input);
     return 0;
 }
