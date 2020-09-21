@@ -23,8 +23,8 @@ vector<int> topo(vector<set<int>> &graph, vector<int> &degree, vector<set<int>> 
     vector<int> order(N+1);
     REP(i,1,N+1,1) if(degree[i] == 0)
         zerodegree.push_back(i);
-    bool later = false;
     for(int i = 1; !zerodegree.empty(); ){
+        bool later = false;
         int node = zerodegree.front();
         zerodegree.pop_front();
         if(A[node] < 0) {
