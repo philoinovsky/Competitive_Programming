@@ -21,6 +21,7 @@ int B[MAXN], N;
 vector<int> topo(vector<set<int>> &graph, vector<int> &degree, vector<set<int>> &original){
     deque<int> zerodegree;
     vector<int> order(N+1);
+    ll ans = 0;
     REP(i,1,N+1,1) if(degree[i] == 0)
         zerodegree.push_back(i);
     for(int i = 1; !zerodegree.empty(); ){
@@ -44,12 +45,16 @@ vector<int> topo(vector<set<int>> &graph, vector<int> &degree, vector<set<int>> 
         }
         if(!later){
             order[i++] = node;
+            ans += A[node];
+            if(B[node] != -1)
+                A[B[node]] += A[node];            
             for(auto ajcnode: graph[node]) {
                 if(--degree[ajcnode] == 0)
                     zerodegree.push_back(ajcnode);
             }            
         }
     }
+    cout << ans << endl;
     return order;
 }
 //-------------function-ends-----------------------
@@ -63,14 +68,6 @@ void solve(){
         degree[B[i]]++;
     }
     vector<int> order = topo(graph,degree,original);
-    ll ans = 0;
-    REP(i,1,N+1,1){
-        int tmp = order[i];
-        ans += A[tmp];
-        if(B[tmp] != -1)
-            A[B[tmp]] += A[tmp];
-    }
-    cout << ans << endl;
     REP(i,1,N+1,1)
         cout << order[i] << ' ';
     cout << endl;
