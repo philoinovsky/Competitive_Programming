@@ -16,66 +16,52 @@ typedef unsigned long long ull;
 const int MAXN = 2e5+10;
 ll A[MAXN];
 int B[MAXN], N;
-
+ 
 //-------------function-starts---------------------
-vector<int> topo(vector<vector<int>> &graph, vector<int> &degree){
+vector<int> topo(vector<set<int>> &graph, vector<int> &degree, vector<set<int>> &original){
     deque<int> zerodegree;
     vector<int> order(N+1);
     REP(i,1,N+1,1) if(degree[i] == 0)
         zerodegree.push_back(i);
-    for(int i = 1; !zerodegree.empty(); i++){
+    for(int i = 1; !zerodegree.empty(); ){
         int node = zerodegree.front();
         zerodegree.pop_front();
-        order[i] = node;
-        for(auto ajcnode: graph[node]) {
-            if(--degree[ajcnode] == 0)
-                zerodegree.push_back(ajcnode);
+        // i++
+        // order[i] = node;
+        if(A[node] > 0) {
+            order[i++] = node;
+            for(auto ajcnode: graph[node]) {
+                if(--degree[ajcnode] == 0)
+                    zerodegree.push_back(ajcnode);
+            }
+        } else {
+            for(auto i = graph[node].begin(); i != graph[node].end(); ){
+                int ajcnode = *i;
+                if(degree[ajcnode] >= 1 && original[node].find(ajcnode) != original[node].end()) {
+                    if(--degree[ajcnode] == 0)
+                        zerodegree.push_back(ajcnode);
+                    degree[node] = 1;
+                    graph[node].erase(i++);
+                    graph[ajcnode].insert(node);
+                    continue;
+                }
+                i++;
+            }
         }
     }
     return order;
 }
-void topo(vector<vector<int>> &graph){
-    deque<int> degree(N+1), zerodegree;
-    degree[1] = 1; // can modify
-    REP(i,1,N+1,1) if((degree[i] += graph[i].size()) == 1)
-        zerodegree.push_back(i);
-    while(!zerodegree.empty()){
-        int node = zerodegree.front();
-        zerodegree.pop_front();
-        for(auto ajcnode: graph[node]) if(degree[ajcnode] > 1) {
-            if(--degree[ajcnode] == 1)
-                zerodegree.push_back(ajcnode);
-        }
-    }
-}
 //-------------function-ends-----------------------
-
+ 
 void solve(){
-    vector<vector<int>> graph(N+1);
-    REP(i,1,N+1,1){
-        if(B[i] != 1){
-            graph[i].push_back(B[i]);
-            graph[B[i]].push_back(i);
-        } 
-    }
-    topo(graph);
-    
-
-
-
-
     vector<int> degree(N+1);
-    vector<vector<int>> graph(N+1);
+    vector<set<int>> graph(N+1), original(N+1);
     REP(i,1,N+1,1) if(B[i] != -1) {
-        if(A[i] > 0) {
-            graph[i].push_back(B[i]);
-            degree[B[i]]++;
-        } else if (A[i] < 0) {
-            graph[B[i]].push_back(i);
-            degree[i]++;
-        }
+        graph[i].insert(B[i]);
+        original[i].insert(B[i]);
+        degree[B[i]]++;
     }
-    vector<int> order = topo(graph,degree);
+    vector<int> order = topo(graph,degree,original);
     ll ans = 0;
     REP(i,1,N+1,1){
         int tmp = order[i];
@@ -88,7 +74,7 @@ void solve(){
         cout << order[i] << ' ';
     cout << endl;
 }
-
+ 
 int main(){
     cin >> N;
     rep(i,N) cin >> A[i+1];
