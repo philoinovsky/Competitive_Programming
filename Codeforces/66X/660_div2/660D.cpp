@@ -23,30 +23,31 @@ vector<int> topo(vector<set<int>> &graph, vector<int> &degree, vector<set<int>> 
     vector<int> order(N+1);
     REP(i,1,N+1,1) if(degree[i] == 0)
         zerodegree.push_back(i);
+    bool later = false;
     for(int i = 1; !zerodegree.empty(); ){
         int node = zerodegree.front();
         zerodegree.pop_front();
-        // i++
-        // order[i] = node;
-        if(A[node] > 0) {
-            order[i++] = node;
-            for(auto ajcnode: graph[node]) {
-                if(--degree[ajcnode] == 0)
-                    zerodegree.push_back(ajcnode);
-            }
-        } else {
-            for(auto i = graph[node].begin(); i != graph[node].end(); ){
-                int ajcnode = *i;
+        if(A[node] < 0) {
+            for(auto ii = graph[node].begin(); ii != graph[node].end(); ){
+                int ajcnode = *ii;
                 if(degree[ajcnode] >= 1 && original[node].find(ajcnode) != original[node].end()) {
                     if(--degree[ajcnode] == 0)
                         zerodegree.push_back(ajcnode);
                     degree[node] = 1;
-                    graph[node].erase(i++);
+                    graph[node].erase(ii++);
                     graph[ajcnode].insert(node);
+                    later = true;
                     continue;
                 }
-                i++;
+                ii++;
             }
+        }
+        if(!later){
+            order[i++] = node;
+            for(auto ajcnode: graph[node]) {
+                if(--degree[ajcnode] == 0)
+                    zerodegree.push_back(ajcnode);
+            }            
         }
     }
     return order;
