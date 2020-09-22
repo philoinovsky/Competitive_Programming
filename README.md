@@ -39,9 +39,7 @@ Competitive Programming in C++
 │   │   │   ├── 660A.cpp
 │   │   │   ├── 660B.cpp
 │   │   │   ├── 660C.cpp
-│   │   │   ├── 660D.cpp
-│   │   │   ├── 660E.cpp
-│   │   │   └── in
+│   │   │   └── 660D.cpp
 │   │   ├── 661_div3
 │   │   │   ├── 661A.cpp
 │   │   │   ├── 661B.cpp
@@ -107,9 +105,10 @@ Competitive Programming in C++
 │   │   ├── in
 │   │   └── k
 │   ├── Edu_92_div2
-│   │   ├── E92D2A.cpp
-│   │   ├── E92D2B.cpp
-│   │   ├── E92D2C.cpp
+│   │   ├── edu92A.cpp
+│   │   ├── edu92B.cpp
+│   │   ├── edu92C.cpp
+│   │   ├── edu92D.cpp
 │   │   ├── edu92E.cpp
 │   │   └── in
 │   ├── Edu_93_div2
@@ -179,13 +178,12 @@ Competitive Programming in C++
 │       └── test.cpp
 ├── GoogleKickStart
 │   ├── 2016
-│   │   ├── Round_A
-│   │   │   ├── 2016A2.cpp
-│   │   │   ├── 2016A3.cpp
-│   │   │   ├── 2016A4.cpp
-│   │   │   ├── in
-│   │   │   └── k
-│   │   └── Round_B
+│   │   └── Round_A
+│   │       ├── 2016A2.cpp
+│   │       ├── 2016A3.cpp
+│   │       ├── 2016A4.cpp
+│   │       ├── in
+│   │       └── k
 │   ├── 2017
 │   │   ├── Round_A
 │   │   │   ├── 2017A1.cpp
@@ -337,15 +335,14 @@ Competitive Programming in C++
 │       │   ├── 2020D3.cpp
 │       │   ├── 2020D4.cpp
 │       │   └── in
-│       ├── Round_E
-│       │   ├── 2020E1.cpp
-│       │   ├── 2020E2.cpp
-│       │   ├── 2020E3.cpp
-│       │   ├── 2020E4.cpp
-│       │   ├── 2020E4.py
-│       │   ├── in
-│       │   └── k
-│       └── Round_F
+│       └── Round_E
+│           ├── 2020E1.cpp
+│           ├── 2020E2.cpp
+│           ├── 2020E3.cpp
+│           ├── 2020E4.cpp
+│           ├── 2020E4.py
+│           ├── in
+│           └── k
 ├── LeetCode
 │   ├── in
 │   ├── k
@@ -358,5 +355,5 @@ Competitive Programming in C++
 ├── README.md
 └── update.sh
 
-72 directories, 284 files
+70 directories, 283 files
 ```
