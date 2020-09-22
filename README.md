@@ -41,8 +41,7 @@ Competitive Programming in C++
 │   │   │   ├── 660C.cpp
 │   │   │   ├── 660D.cpp
 │   │   │   ├── 660E.cpp
-│   │   │   ├── in
-│   │   │   └── k
+│   │   │   └── in
 │   │   ├── 661_div3
 │   │   │   ├── 661A.cpp
 │   │   │   ├── 661B.cpp
@@ -112,8 +111,7 @@ Competitive Programming in C++
 │   │   ├── E92D2B.cpp
 │   │   ├── E92D2C.cpp
 │   │   ├── edu92E.cpp
-│   │   ├── in
-│   │   └── k
+│   │   └── in
 │   ├── Edu_93_div2
 │   │   ├── A.cpp
 │   │   ├── B.cpp
@@ -360,5 +358,5 @@ Competitive Programming in C++
 ├── README.md
 └── update.sh
 
-72 directories, 286 files
+72 directories, 284 files
 ```
