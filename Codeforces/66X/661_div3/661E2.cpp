@@ -60,22 +60,45 @@ void solve(){
             }
         }
     }
-    multiset<pair<int,int>,comp> s;
-    ll SUM = 0;
+    multiset<pair<int,int>,comp> s1,s2;
+    ll SUM1 = 0, SUM2 = 0;
     rep(i,N-1){
         int leaves = min(count[U[i]],count[V[i]]);
-        s.insert(make_pair(W[i],leaves));
-        SUM += 1LL*leaves*W[i];
+        if(C[i] == 1){
+            s1.insert(make_pair(W[i],leaves));
+            SUM1 += 1LL*leaves*W[i];            
+        } else {
+            s2.insert(make_pair(W[i],leaves));
+            SUM2 += 1LL*leaves*W[i];   
+        }
     }
-    int cnt = 0;
-    while(SUM > S){
-        pair<int,int> largest = *s.begin();
-        s.erase(s.begin());
-        SUM -= calc(largest);
-        s.insert(mp(largest.first/2,largest.second));
-        cnt++;
+    deque<ll> v1 = {SUM1}, v2 = {SUM2};
+    while(SUM1){
+        pair<int,int> largest = *s1.begin();
+        s1.erase(s1.begin());
+        SUM1 -= calc(largest);
+        s1.insert(mp(largest.first/2,largest.second));
+        v1.push_front(SUM1);
     }
-    cout << cnt << endl;
+    while(SUM2){
+        pair<int,int> largest = *s2.begin();
+        s2.erase(s2.begin());
+        SUM2 -= calc(largest);
+        s2.insert(mp(largest.first/2,largest.second));
+        v2.push_front(SUM2);
+    }
+    int MIN = INT_MAX;
+    auto v2end = v2.end();
+    rep(i,(int)v1.size()){
+        if(v1[i] > S) {
+            break;
+        } else {
+            // find the largest v2[j] which is <= S - v1[i]
+            auto iter = upper_bound(v2.begin(),v2.end(),S-v1[i]);
+            MIN = min(MIN, (int)v1.size() - 1 - i + 2 * (int)(v2end - iter));
+        }
+    }
+    cout << MIN << endl;
 }
 
 int main(){
@@ -84,9 +107,7 @@ int main(){
     while(T--){
         //read params to global variables
         cin >> N >> S;
-        rep(i,N-1){
-            cin >> V[i] >> U[i] >> W[i] >> C[i];
-        }
+        rep(i,N-1) cin >> V[i] >> U[i] >> W[i] >> C[i];
         solve();
     }
     return 0;
