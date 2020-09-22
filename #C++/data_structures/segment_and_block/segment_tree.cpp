@@ -9,6 +9,57 @@ using namespace std;
 //global variables
 
 //#####################################################################
+//-----------------segment-tree-min/max/gcd/lcm-start------------------
+// interval: [l,r), initialization: segtree t(size+1);
+struct segtree {
+	int n;
+	vector<int> t, ps;
+	segtree(int n) : n(n) {
+		t.resize(4 * n, INT_MIN);
+		ps.resize(4 * n, 0);
+	}
+	inline void upd(int pos, int val) { return upd(0, 0, n, pos, val); }
+	inline void add(int l, int r, int val) { return add(0, 0, n, l, r, val); }
+	inline int get(int l, int r) { return get(0, 0, n, l, r); }
+private:
+    void push(int v, int l, int r) {
+		if (l + 1 != r) {
+			ps[v * 2 + 1] += ps[v];
+			ps[v * 2 + 2] += ps[v];
+		}
+		t[v] += ps[v];
+		ps[v] = 0;
+	}
+	void upd(int v, int l, int r, int pos, int val) {
+		push(v, l, r);
+		if (l + 1 == r) { t[v] = val; return; }
+		int m = (l + r) >> 1;
+		if (pos < m) upd(v * 2 + 1, l, m, pos, val);
+		else upd(v * 2 + 2, m, r, pos, val);
+		t[v] = max(t[v * 2 + 1], t[v * 2 + 2]);
+	}
+	void add(int v, int l, int r, int L, int R, int val) {
+		push(v, l, r);
+		if (L >= R) return;
+		if (l == L && r == R) { ps[v] += val; push(v, l, r); return; }
+		int m = (l + r) >> 1;
+		add(v * 2 + 1, l, m, L, min(m, R), val);
+		add(v * 2 + 2, m, r, max(m, L), R, val);
+		t[v] = max(t[v * 2 + 1], t[v * 2 + 2]);
+	}
+	int get(int v, int l, int r, int L, int R) {
+		push(v, l, r);
+		if (L >= R) return INT_MIN;
+		if (l == L && r == R) return t[v];
+		int m = (l + r) >> 1;
+		int r1 = get(v * 2 + 1, l, m, L, min(m, R));
+		int r2 = get(v * 2 + 2, m, r, max(m, L), R);
+		t[v] = max(t[v * 2 + 1], t[v * 2 + 2]);
+		return max(r1, r2);
+	}
+};
+//-----------------segment-tree-min/max/gcd/lcm-end--------------------
+
 //------------------------segment-tree-start---------------------------
 /* to modify 
     1.  push_up
