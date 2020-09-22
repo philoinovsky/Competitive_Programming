@@ -111,7 +111,6 @@ Competitive Programming in C++
 │   │   ├── E92D2A.cpp
 │   │   ├── E92D2B.cpp
 │   │   ├── E92D2C.cpp
-│   │   ├── edu92E
 │   │   ├── edu92E.cpp
 │   │   ├── in
 │   │   └── k
@@ -361,5 +360,5 @@ Competitive Programming in C++
 ├── README.md
 └── update.sh
 
-72 directories, 287 files
+72 directories, 286 files
 ```
