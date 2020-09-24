@@ -106,6 +106,12 @@ Competitive Programming in C++
 │   │   ├── 670E.cpp
 │   │   ├── in
 │   │   └── k
+│   ├── 672_div2
+│   │   ├── 672A.cpp
+│   │   ├── 672B.cpp
+│   │   ├── 672C.cpp
+│   │   ├── 672D.cpp
+│   │   └── in
 │   ├── Edu_92_div2
 │   │   ├── edu92A.cpp
 │   │   ├── edu92B.cpp
@@ -357,5 +363,5 @@ Competitive Programming in C++
 ├── README.md
 └── update.sh
 
-70 directories, 285 files
+71 directories, 290 files
 ```
