@@ -106,6 +106,15 @@ Competitive Programming in C++
 │   │   ├── 670E.cpp
 │   │   ├── in
 │   │   └── k
+│   ├── 672_div2
+│   │   ├── 672A.cpp
+│   │   ├── 672B.cpp
+│   │   ├── 672C1.cpp
+│   │   ├── 672C2.cpp
+│   │   ├── 672D.cpp
+│   │   ├── Dsln.cpp
+│   │   ├── in
+│   │   └── k
 │   ├── Edu_92_div2
 │   │   ├── edu92A.cpp
 │   │   ├── edu92B.cpp
@@ -347,6 +356,11 @@ Competitive Programming in C++
 │       │   ├── in
 │       │   └── k
 │       └── Round_F
+│           ├── 2020F1.cpp
+│           ├── 2020F2.cpp
+│           ├── 2020F3.cpp
+│           ├── 2020F4.cpp
+│           └── in
 ├── LeetCode
 │   ├── in
 │   ├── k
@@ -359,5 +373,5 @@ Competitive Programming in C++
 ├── README.md
 └── update.sh
 
-72 directories, 285 files
+73 directories, 298 files
 ```
