@@ -17,7 +17,7 @@ typedef unsigned long long ull;
 //global variables
 const int MAXN = 3010;
 int N;
-vector<pair<int,int>> pii;
+vector<int> L, R, val;
 
 //-------------function-starts---------------------
 //-------------function-ends-----------------------
@@ -31,8 +31,14 @@ int main(){
     while(T--){
         //read params to global variables
         cin >> N;
-        pii.resize(N);
-        rep(i,N) cin >> pii[i].r >> pii[i].l;
+        L.resize(N);
+        R.resize(N);
+        val.clear();
+        rep(i,N) {
+            cin >> L[i] >> R[i];
+            val.push_back(L[i]);
+            val.push_back(R[i]);
+        }
         solve();
     }
     return 0;
