@@ -13,22 +13,36 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 //global variables
+const int MAXN = 3e5 + 10, mod = 998244353;
+int N, K, L[MAXN], R[MAXN];
 
 //-------------function-starts---------------------
 //-------------function-ends-----------------------
 
 void solve(){
-    //init
-    //do things
-    //store results
+    sort(L,L+N);
+    sort(R,R+N);
+    int cnt = 0;
+    ll sum = 0;
+    for(int i = 0, j = 0; i < N || j < N; ){
+        if(j == N || (i != N && L[i] <= R[i])){
+            // choose L
+            cnt++;
+            if(cnt >= K){
+                
+            }
+            i++;
+        } else {
+            // choose R
+            cnt--;
+            j++;
+        }
+    }
 }
 
 int main(){
-    int T;
-    cin >> T;
-    while(T--){
-        //read params to global variables
-        solve();
-    }
+    cin >> N >> K;
+    rep(i,N) cin >> L[i] >> R[i];
+    solve();
     return 0;
 }
