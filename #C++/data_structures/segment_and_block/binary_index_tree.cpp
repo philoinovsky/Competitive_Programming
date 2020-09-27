@@ -15,7 +15,7 @@ public:
     BinaryIndexTree(){}
     BinaryIndexTree(int n){ tree.resize(n); }
     inline void update(int i, int d){ REP(pos,i,(int)tree.size(),lowbit(pos)) tree[pos] += d; }
-    inline int query(int n){ int ans = 0; REPR(pos,n,0,-lowbit(pos)) ans += tree[pos]; return ans; }
+    inline int query(int n){ int ans = 0; REPR(pos,n,-1,-lowbit(pos)) ans += tree[pos]; return ans; }
     inline int query(int a, int b){ return query(b) - query(a-1); }
 };
 //--------------------BIT-ends----------------------------------------------------
