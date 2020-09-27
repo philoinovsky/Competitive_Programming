@@ -21,14 +21,51 @@ template<typename T> void print(const T& t) { //print(vector);
     cout << endl;
 }
 //global variables
+const int MAXN = 55;
+ll N, M, K, A[MAXN];
 
 //-------------function-starts---------------------
+void gen(deque<vector<int>> &res){
+    while(res.size() < N){
+        int NN = res.size();
+        rep(j,NN){
+            rep(i,M){
+                vector<int> tmp = res.front();
+                tmp.push_back(i);
+                res.push_back(tmp);
+            }
+            res.pop_front();
+        }
+    }
+}
 //-------------function-ends-----------------------
 
 void solve(){
-    //init
-    //do things
-    //store results
+    double pp = (double)1/(double)M;
+    double p = 1;
+    // one slice probability
+    rep(i,N) p *= pp;
+    deque<vector<int>> res;
+    rep(i,M) res.push_back({i});
+    gen(res);
+    int NN = res.size();
+    ll tot = 0;
+    rep(i,NN){
+        sort(res[i].begin(),res[i].end());
+        int last = -1;
+        int start = -1;
+        int cnt[6] = {0};
+        rep(j,N){
+            if(res[i][j] != last){
+                last = res[i][j];
+                cnt[++start] = 1;
+            } else {
+                cnt[start]++;
+            }
+        }
+        rep(j,K) if(cnt[j] == A[j]) tot++;
+    }
+    cout << 1 / p * tot << endl;
 }
 
 int main(){
@@ -36,6 +73,8 @@ int main(){
     cin >> T;
     while(T--){
         //read params to global variables
+        cin >> N >> M >> K;
+        rep(i,K) cin >> A[i];
         printf("Case #%d: ", iCase++);
         solve();
     }

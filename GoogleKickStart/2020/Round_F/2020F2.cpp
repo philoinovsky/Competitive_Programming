@@ -21,13 +21,26 @@ template<typename T> void print(const T& t) { //print(vector);
     cout << endl;
 }
 //global variables
+const int MAXN = 1e5+10;
+ll N, K;
+pair<ll,ll> I[MAXN];
 
 //-------------function-starts---------------------
 //-------------function-ends-----------------------
 
 void solve(){
     //init
+    sort(I,I+N);
     //do things
+    ll start = 0, cnt = 0;
+    rep(i,N){
+        start = max(start,I[i].first);
+        ll seg = I[i].second - start;
+        ll add = (seg + K - 1) / K;
+        cnt += add;
+        start += add * K;
+    }
+    cout << cnt << endl;
     //store results
 }
 
@@ -36,6 +49,8 @@ int main(){
     cin >> T;
     while(T--){
         //read params to global variables
+        cin >> N >> K;
+        rep(i,N) cin >> I[i].first >> I[i].second;
         printf("Case #%d: ", iCase++);
         solve();
     }
