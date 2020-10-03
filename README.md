@@ -356,13 +356,19 @@ Competitive Programming in C++
 │       │   ├── 2020E4.py
 │       │   ├── in
 │       │   └── k
-│       └── Round_F
-│           ├── 2020F1.cpp
-│           ├── 2020F2.cpp
-│           ├── 2020F3.cpp
-│           ├── 2020F4.cpp
-│           ├── in
-│           └── k
+│       ├── Round_F
+│       │   ├── 2020F1.cpp
+│       │   ├── 2020F2.cpp
+│       │   ├── 2020F3.cpp
+│       │   ├── 2020F4.cpp
+│       │   ├── in
+│       │   └── k
+│       └── Round_G
+│           ├── 2020G1.cpp
+│           ├── 2020G2.cpp
+│           ├── 2020G3.cpp
+│           ├── 2020G4.cpp
+│           └── in
 ├── LeetCode
 │   ├── in
 │   ├── k
@@ -375,5 +381,5 @@ Competitive Programming in C++
 ├── README.md
 └── update.sh
 
-73 directories, 300 files
+74 directories, 305 files
 ```
