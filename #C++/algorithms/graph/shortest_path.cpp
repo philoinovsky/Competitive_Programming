@@ -5,39 +5,49 @@ int N, X, Y;
 vector<vector<int>> graph;
 #define rep(i,n) for(int i = 0; i < (int)n; ++i)
 
-//-------------dijkstra-starts-(weighted)-untested---------------
+//-------------dijkstra-ends-(weighted)-positive-starts----------
 /*
     graph of pair<int,int> - sum of weight, node number
     condition: graph must be connected
     return a list of shortest path length from start to everynode
-    time: O((N+M)logM)
+    time: O(VlogE+E)
 */
 vector<int> dijkstra(vector<vector<pair<int,int>>> &graph, int start){
-    int N = graph.size(), cntvis = 0;
-    priority_queue<pair<int,int>,vector<pair<int,int>>,less<pair<int,int>>> heap;
+    int N = graph.size(), cntvis = 1;
+    priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> heap;
+    heap.push({0,start});
     vector<bool> visited(N);
-    vector<int> MIN(N,INT_MAX);
-    for(pair<int,int> adjnode: graph[start])
-        heap.push(adjnode);
-    MIN[start] = 0;
-    visited[start] = true;
-    while(cntvis < N){
-        pair<int,int> shortest = heap.top();
-        int distance = shortest.first, node = shortest.second;
-        if(visited[node]) continue;
+    vector<int> dist(N,INT_MAX);
+    while(cntvis < N && !heap.empty()){
+        auto [d,u] = heap.top();
         heap.pop();
-        visited[node] = true;
-        MIN[node] = distance;
+        if(visited[u]) continue;
+        visited[u] = true;
+        dist[u] = d;
         cntvis++;
-        for(pair<int,int> edge: graph[node]){
-            int edgelen = edge.first, nextnode = edge.second;
-            if(!visited[nextnode])
-                heap.push(make_pair(edgelen+MIN[node],nextnode));
-        }   
+        for(auto [w,v]: graph[u]) if(!visited[v]) heap.push({w+dist[u],v});
     }
-    return MIN;
+    return dist;
 }
-//-------------dijkstra-ends-(weighted)-untested-----------------
+//-------------dijkstra-ends-(weighted)-positive-ends------------
+
+//-------------dijkstra-ends-(weighted)-negative-starts----------
+vector<int> dijkstra(vector<vector<pair<int,int>>> &graph, int start){
+    vector<int> dist(N,INT_MAX);
+    dist[start] = 0;
+    priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> heap;
+    heap.push({0,start});
+    while(!heap.empty()){
+        int u = heap.top().second;
+        heap.pop();
+        for(auto &[w,v]: graph[u]) if(dist[v] > dist[u] + w) {
+            dist[v] = dist[u] + w;
+            heap.push({w,v});
+        }
+    }
+    return dist;
+}
+//-------------dijkstra-ends-(weighted)-negative-ends------------
 
 //---------------BFS-distance-unweighted-graph-starts------------
 int distance(int A, int B){
